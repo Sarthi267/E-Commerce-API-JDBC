@@ -41,8 +41,9 @@ public class OrderService {
         }
         return savedOrder;
     }
-    public Order findById(Long orderId) {
-        return orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+    public Order findById(Long id) {
+        return orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
     }
     public Order addOrder(Order order) {
         return orderRepository.save(order);
