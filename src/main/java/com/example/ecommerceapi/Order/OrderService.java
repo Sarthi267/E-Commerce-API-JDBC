@@ -55,11 +55,11 @@ public class OrderService {
         updatedOrder.setId(id);
         return orderRepository.save(updatedOrder);
     }
-    public void deleteOrder(Long orderId) {
-        if(!orderRepository.existsById(orderId)){
-            throw new RuntimeException("Order does not exist with id: " + orderId);
+    public void deleteOrder(Long id) {
+        if(!orderRepository.existsById(id)){
+            throw new RuntimeException("Order does not exist with id: " + id);
         } else {
-            orderRepository.deleteById(orderId);
+            orderRepository.deleteById(id);
         }
     }
     public List<Order> getAllOrders() {
