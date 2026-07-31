@@ -1,5 +1,7 @@
 package com.example.ecommerceapi.Product;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -7,6 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Product {
     @Id
     private Long id;
+    @NotNull
     private String name;
     private String description;
     private String image;

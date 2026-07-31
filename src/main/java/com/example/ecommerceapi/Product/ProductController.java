@@ -1,5 +1,6 @@
 package com.example.ecommerceapi.Product;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +13,7 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @PostMapping
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@Valid @RequestBody Product product) {
         return productRepository.save(product);
     }
     @GetMapping
