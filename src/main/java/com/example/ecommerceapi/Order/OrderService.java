@@ -4,7 +4,6 @@ import com.example.ecommerceapi.Listing.Listing;
 import com.example.ecommerceapi.Listing.ListingRepository;
 import com.example.ecommerceapi.OrderItem.OrderItem;
 import com.example.ecommerceapi.OrderItem.OrderItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,12 +13,15 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private OrderItemRepository orderItemRepository;
-    @Autowired
-    private ListingRepository listingRepository;
+    private final OrderRepository orderRepository;
+    private final OrderItemRepository orderItemRepository;
+    private final ListingRepository listingRepository;
+
+    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, ListingRepository listingRepository) {
+        this.orderRepository = orderRepository;
+        this.orderItemRepository = orderItemRepository;
+        this.listingRepository = listingRepository;
+    }
 
     @Transactional
     public Order placeOrder(Order order, List<OrderItem> items) {

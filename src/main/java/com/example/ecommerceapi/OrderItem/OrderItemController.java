@@ -1,6 +1,5 @@
 package com.example.ecommerceapi.OrderItem;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -10,8 +9,11 @@ import java.util.List;
 @RequestMapping("/order-items")
 public class OrderItemController {
 
-    @Autowired
-    private OrderItemRepository orderItemRepository;
+    private final OrderItemRepository orderItemRepository;
+
+    public OrderItemController(OrderItemRepository orderItemRepository) {
+        this.orderItemRepository = orderItemRepository;
+    }
 
     @PostMapping
     public OrderItem save(@RequestBody OrderItem orderItem) {

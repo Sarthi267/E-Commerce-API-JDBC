@@ -1,6 +1,5 @@
 package com.example.ecommerceapi.Seller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,8 +8,11 @@ import java.util.List;
 @RequestMapping("/sellers")
 public class SellerController {
 
-    @Autowired
-    private SellerRepository sellerRepository;
+    private final SellerRepository sellerRepository;
+
+    public SellerController(SellerRepository sellerRepository) {
+        this.sellerRepository = sellerRepository;
+    }
 
     @PostMapping
     public Seller save(@RequestBody Seller seller) {

@@ -2,7 +2,6 @@ package com.example.ecommerceapi;
 
 import com.example.ecommerceapi.Product.Product;
 import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

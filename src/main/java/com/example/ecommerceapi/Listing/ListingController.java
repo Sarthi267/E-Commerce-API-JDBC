@@ -1,6 +1,5 @@
 package com.example.ecommerceapi.Listing;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -9,10 +8,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/listings")
 public class ListingController {
-   @Autowired
-   private ListingRepository listingRepository;
+   private final ListingRepository listingRepository;
 
-   @PostMapping
+    public ListingController(ListingRepository listingRepository) {
+        this.listingRepository = listingRepository;
+    }
+
+    @PostMapping
    public Listing addListing(@RequestBody Listing listing) {
    return listingRepository.save(listing);
    }
