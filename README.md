@@ -22,4 +22,5 @@ This project is an e-commerce API that is modeled for sellers to post listings f
 ***
 ### Notes 
 
-- The schema creates itself so there's no manual setup there
+- ~~The schema creates itself so there's no manual setup there~~
+- After adding flyway database migrations there is now no schema, but the tables, indexes, functions and triggers still do create themselves
