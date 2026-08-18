@@ -1,6 +1,8 @@
 package com.example.ecommerceapi.OrderItem;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -12,15 +14,17 @@ public class OrderItem {
     private Long orderId;
     private Long listingId;
     private int quantity;
-    private double priceAtPurchase;
-    private double subtotal;
+    private Double priceAtPurchase;
+    private Double subtotal;
+    @Column
     private LocalDateTime createdAt;
+    @Column
     private LocalDateTime updatedAt;
 
     public OrderItem() {}
 
-    public OrderItem(Long orderId, Long listingId, int quantity, double priceAtPurchase,
-                     double subtotal, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public OrderItem(Long orderId, Long listingId, int quantity, Double priceAtPurchase,
+                     Double subtotal, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.orderId = orderId;
         this.listingId = listingId;
         this.quantity = quantity;
@@ -62,19 +66,19 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public double getPriceAtPurchase() {
+    public Double getPriceAtPurchase() {
         return priceAtPurchase;
     }
 
-    public void setPriceAtPurchase(double priceAtPurchase) {
+    public void setPriceAtPurchase(Double priceAtPurchase) {
         this.priceAtPurchase = priceAtPurchase;
     }
 
-    public double getSubtotal() {
+    public Double getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
+    public void setSubtotal(Double subtotal) {
         this.subtotal = subtotal;
     }
 

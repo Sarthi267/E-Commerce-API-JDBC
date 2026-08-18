@@ -1,6 +1,9 @@
 package com.example.ecommerceapi.Order;
 
+import com.example.ecommerceapi.StockUpdateService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,14 +13,16 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final StockUpdateService stockUpdateService;
 
-    public OrderController(OrderService orderService) {
+    public OrderController(OrderService orderService, StockUpdateService stockUpdateService) {
         this.orderService = orderService;
+        this.stockUpdateService = stockUpdateService;
     }
 
     @PostMapping
-    public Order addOrder(@RequestBody Order order) {
-        return orderService.addOrder(order);
+    public Order addOrder(@RequestBody PlaceOrderDTO request) {
+        return orderService.placeOrder(request.order(), request.items());
     }
     @GetMapping
     public List<Order> getAllOrders() {
@@ -84,4 +89,9 @@ public class OrderController {
                                                     @RequestParam String paymentStatus) {
         return orderService.findByUserIdAndPaymentStatus(userId, paymentStatus);
     }
+    @GetMapping(value = "/stock-updates", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter stockUpdates(@RequestParam Long listingId) {
+      return stockUpdateService.createEmitter(listingId);
+    }
+
 }

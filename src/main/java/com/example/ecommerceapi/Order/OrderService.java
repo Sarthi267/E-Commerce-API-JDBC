@@ -4,6 +4,7 @@ import com.example.ecommerceapi.Listing.Listing;
 import com.example.ecommerceapi.Listing.ListingRepository;
 import com.example.ecommerceapi.OrderItem.OrderItem;
 import com.example.ecommerceapi.OrderItem.OrderItemRepository;
+import com.example.ecommerceapi.StockUpdateService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,11 +17,13 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final ListingRepository listingRepository;
+    private final StockUpdateService stockUpdateService;
 
-    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, ListingRepository listingRepository) {
+    public OrderService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, ListingRepository listingRepository, StockUpdateService stockUpdateService) {
         this.orderRepository = orderRepository;
         this.orderItemRepository = orderItemRepository;
         this.listingRepository = listingRepository;
+        this.stockUpdateService = stockUpdateService;
     }
 
     @Transactional
@@ -38,6 +41,7 @@ public class OrderService {
             item.setOrderId(savedOrder.getId());
             item.setSubtotal(item.getPriceAtPurchase() * item.getQuantity());
             listing.setStock(listing.getStock() - item.getQuantity());
+            stockUpdateService.sendStockUpdate(item.getListingId(), listing.getStock());
             listingRepository.save(listing);
             orderItemRepository.save(item);
         }

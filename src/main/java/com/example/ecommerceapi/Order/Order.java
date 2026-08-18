@@ -1,6 +1,7 @@
 package com.example.ecommerceapi.Order;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -11,16 +12,18 @@ public class Order {
     private Long id;
     private Long userId;
     private String status;
+    @Column
     private LocalDateTime createdAt;
+    @Column
     private LocalDateTime updatedAt;
-    private double totalAmount;
+    private Double totalAmount;
     private String shippingAddress;
     private String paymentStatus;
 
     public Order() {}
 
     public Order(Long userId, String status, LocalDateTime createdAt, LocalDateTime updatedAt,
-                 double totalAmount, String shippingAddress, String paymentStatus) {
+                 Double totalAmount, String shippingAddress, String paymentStatus) {
         this.userId = userId;
         this.status = status;
         this.createdAt = createdAt;
@@ -70,11 +73,11 @@ public class Order {
         this.updatedAt = updatedAt;
     }
 
-    public double getTotalAmount() {
+    public Double getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
+    public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
 
