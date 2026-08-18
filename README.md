@@ -24,5 +24,5 @@ This project is an e-commerce API that is modeled for sellers to post listings f
 
 - ~~The schema creates itself so there's no manual setup there~~
 - After adding flyway database migrations there is now no schema, but the tables, indexes, functions and triggers still do create themselves
-- Implemented SSE endpoint in OrderController
+- Implemented SSE endpoint for stock updates in OrderController
 - CreatedAt and UpdatedAt timestamps are allowed to be null, although that is not ideal, for the purposes of the SSE demonstration that's how I was able to make it work
