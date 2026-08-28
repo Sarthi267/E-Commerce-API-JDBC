@@ -28,7 +28,7 @@ services:
     depends_on:
       ecommerce-db:
         condition: service_healthy
-
+    restart: unless-stopped
 volumes:
   ecommerce_postgres_data:
 
