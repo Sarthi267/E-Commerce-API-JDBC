@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    name: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: postgres
+  template:
+    metadata:
+      labels:
+        service: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:17-alpine
+        volumeMounts:
+        - name: postgres-volume-mount
+          mountPath: /var/lib/postgresql/data
+          subPath: postgres
+        env:
+         - name: POSTGRES_USER
+           valueFrom:
+            secretKeyRef:
+               name: postgres-credentials
+               key: user
+         - name: POSTGRES_PASSWORD
+           valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: password
+         - name: POSTGRES_DB
+           valueFrom:
+             configMapKeyRef:
+               name: ecommerce-config
+               key: db-name
+        resources:
+           requests:
+             memory: "256Mi"
+             cpu: "250m"
+           limits:
+             memory: "512Mi"
+             cpu: "500m"
+      volumes:
+          - name: postgres-volume-mount
+            persistentVolumeClaim:
+              claimName: postgres-pvc
