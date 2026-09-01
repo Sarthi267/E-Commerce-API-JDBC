@@ -20,6 +20,19 @@ This project is an e-commerce API that is modeled for sellers to post listings f
 4. Copy application.example.properties to application.properties and fill your password
 5. mvn spring-boot:run  
 ***
+### Docker
+Build and run with Docker Compose: 
+1. Copy .env.example to .env and fill in your database credentials
+2. docker compose up --build
+3. API available at http://localhost:8081
+***
+### Kubernetes
+Apply all manifests:
+1. Copy postgres-secret-example.yaml to postgres-secret.yaml and fill in Base64 credentials
+2. Copy ecommerce-secret-example.yaml o ecommerce-secret.yaml and fill in Base64 credentials
+3. kubectl apply -f k8s/
+4. kubectl get pods to verify everything is running
+***
 ### Notes 
 
 - ~~The schema creates itself so there's no manual setup there~~
