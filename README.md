@@ -8,7 +8,7 @@ This project is an e-commerce API that is modeled for sellers to post listings f
 ***
 ### Prerequisites   
 
-- Java 21
+- Java 25
 - Maven
 - PostgreSQL  
 ***
