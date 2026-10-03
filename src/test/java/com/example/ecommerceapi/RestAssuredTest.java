@@ -10,7 +10,6 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -67,5 +66,32 @@ public class RestAssuredTest {
                 .then()
                 .statusCode(400);
     }
+    @Test
+    void shouldDeleteProduct() {
+        String product = """
+                {"name":"Keyboard",
+                "description": "Black",
+                "image":null,
+                "category": "Technology"
+                }
+                """;
+        int productId = given()
+                .contentType(ContentType.JSON)
+                .body(product)
+                .when()
+                .post("/products")
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("id");
+        given()
+                .when()
+                .delete("/products/" +  productId)
+                .then()
+                .statusCode(200);
+
+
+    }
+
 }
 
