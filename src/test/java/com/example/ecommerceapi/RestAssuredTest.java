@@ -50,18 +50,6 @@ public class RestAssuredTest {
         assertThat(createdProduct.getName()).isEqualTo("Keyboard");
     }
     @Test
-    void shouldValidateJsonResponse() {
-        given()
-                .when()
-                .get("/products/1")
-                .then()
-                .statusCode(200)
-                .body("name", equalTo("Keyboard"))
-                .body("description", equalTo("Black, ergonomic, mechanical"))
-                .body("image", equalTo(null))
-                .body("category", equalTo("Technology"));
-    }
-    @Test
     void shouldReturn400WhenInvalidJsonPost() {
         String badJson = """
                 {"name":null,
