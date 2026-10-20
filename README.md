@@ -33,6 +33,22 @@ Apply all manifests:
 3. kubectl apply -f k8s/
 4. kubectl get pods to verify everything is running
 ***
+### Architecture Diagram
+```mermaid
+graph TD  
+    Client[Client / Postman] -->|HTTP Requests| HostPortAPI
+    
+    subgraph Docker Stack
+        API -->|JDBC / Flyway Migrations| DB[(PostgreSQL Container :5432)]
+    end
+
+    subgraph Host Infrastructure
+        HostPortDB[Host Port :5433] -.-> DB
+        HostPortAPI[Host Port :8081] -.-> API
+    end
+
+```
+***
 ### Notes 
 
 - ~~The schema creates itself so there's no manual setup there~~
