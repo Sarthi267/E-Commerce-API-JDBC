@@ -41,16 +41,16 @@ flowchart TD
 
     Client["Client / Postman"] -->|HTTP Requests| HostPortAPI
 
-    subgraph Host["Host Infrastructure"]
+    subgraph Host["Host <br/>Infrastructure"]
         HostPortDB["Host Port<br/>:5433"]
         HostPortAPI["Host Port<br/>:8081"]
     end
 
-    subgraph Docker["Docker Stack"]
+    subgraph Docker["Docker <br/>Stack"]
         API["API"]
         DB[("PostgreSQL<br/>Container :5432")]
 
-        API -->|JDBC / Flyway<br/>Migrations| DB
+        API -->|JDBC/Flyway<br/>Migrations| DB
     end
 
     HostPortDB -.-> DB
