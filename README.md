@@ -55,3 +55,4 @@ graph TD
 - After adding flyway database migrations there is now no schema, but the tables, indexes, functions and triggers still do create themselves
 - Implemented SSE endpoint for stock updates in OrderController
 - CreatedAt and UpdatedAt timestamps are allowed to be null, although that is not ideal, for the purposes of the SSE demonstration that's how I was able to make it work
+- (November 3) Mermaid.js diagram has some parts of it cutoff when displayed on GitHub despite looking normal in the IDE, this also has to be fixed.
