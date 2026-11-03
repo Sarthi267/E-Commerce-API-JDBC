@@ -35,18 +35,27 @@ Apply all manifests:
 ***
 ### Architecture Diagram
 ```mermaid
-%%{init: {"theme": "dark", "flowchart": {"rankSpacing": 50, "nodeSpacing": 30}} }%%
-graph TD  
-    Client[Client / Postman] -->|HTTP Requests| HostPortAPI
-    
-      subgraph Docker Stack
-        API -->|JDBC / Flyway Migrations| DB[(PostgreSQL Container :5432)]
+
+%%{init: {"theme": "dark", "flowchart": {"rankSpacing": 50, "nodeSpacing": 30}}}%%
+flowchart TD
+
+    Client["Client / Postman"] -->|HTTP Requests| HostPortAPI
+
+    subgraph Host["Host Infrastructure"]
+        HostPortDB["Host Port<br/>:5433"]
+        HostPortAPI["Host Port<br/>:8081"]
     end
-    
-    subgraph Host Infrastructure
-        HostPortDB[Host Port :5433] -.-> DB
-        HostPortAPI[Host Port :8081] -.-> API
+
+    subgraph Docker["Docker Stack"]
+        API["API"]
+        DB[("PostgreSQL<br/>Container :5432")]
+
+        API -->|JDBC / Flyway<br/>Migrations| DB
     end
+
+    HostPortDB -.-> DB
+    HostPortAPI -.-> API
+
     
 ```
 ***
