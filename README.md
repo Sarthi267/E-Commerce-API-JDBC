@@ -34,34 +34,8 @@ Apply all manifests:
 4. kubectl get pods to verify everything is running
 ***
 ### Architecture Diagram
-```mermaid
 
-%%{init: {"theme": "dark", "flowchart": {"rankSpacing": 60, "nodeSpacing": 50}}}%%
-flowchart TD
-
-    Client["Client / Postman"]
-
-    subgraph Host["Host Infrastructure"]
-        HostAPI["Host Port :8081"]
-        HostDB["Host Port :5433"]
-    end
-
-    subgraph Docker["Docker Stack"]
-        API["API"]
-        Migration["JDBC / Flyway Migrations"]
-        DB[("PostgreSQL Container :5432")]
-
-        API --> Migration
-        Migration --> DB
-    end
-
-    Client --> HostAPI
-    HostAPI -.-> API
-    HostDB -.-> DB
-
-    
-    
-```
+![Architecture Diagram](docs/PostgreSQL Docker Connectivity Architecture-2026-11-03-200618.svg)
 ***
 ### Notes 
 
