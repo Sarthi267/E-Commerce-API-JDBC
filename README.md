@@ -36,17 +36,17 @@ Apply all manifests:
 ### Architecture Diagram
 ```mermaid
 
-%%{init: {"theme": "dark", "flowchart": {"rankSpacing": 50, "nodeSpacing": 30}}}%%
+%%{init: {"theme": "dark", "flowchart": {"rankSpacing": 50, "nodeSpacing": 30, minNodeWidth: 300}}}%%
 flowchart TD
 
     Client["Client / Postman"] -->|HTTP Requests| HostPortAPI
 
-    subgraph Host["Host <br/>Infrastructure"]
+    subgraph Host["Host Infrastructure"]
         HostPortDB["Host Port<br/>:5433"]
         HostPortAPI["Host Port<br/>:8081"]
     end
 
-    subgraph Docker["Docker <br/>Stack"]
+    subgraph Docker["Docker Stack"]
         API["API"]
         DB[("PostgreSQL<br/>Container :5432")]
 
