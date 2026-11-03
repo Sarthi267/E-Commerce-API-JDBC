@@ -35,7 +35,7 @@ Apply all manifests:
 ***
 ### Architecture Diagram
 
-![Architecture Diagram](docs/PostgreSQL Docker Connectivity Architecture-2026-11-03-200618.svg)
+![Architecture Diagram](docs/architecture-diagram.svg)
 ***
 ### Notes 
 
