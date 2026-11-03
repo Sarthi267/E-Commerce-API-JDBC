@@ -36,7 +36,7 @@ Apply all manifests:
 ### Architecture Diagram
 ```mermaid
 
-%%{init: {"theme": "dark", "flowchart": {"rankSpacing": 50, "nodeSpacing": 30, minNodeWidth: 1000}}}%%
+%%{init: {"theme": "dark", "flowchart": {"rankSpacing": 50, "nodeSpacing": 30, "htmlLabels": true}}}%%
 flowchart TD
 
     Client["Client / Postman"] -->|HTTP Requests| HostPortAPI
@@ -55,7 +55,7 @@ flowchart TD
 
     HostPortDB -.-> DB
     HostPortAPI -.-> API
-
+    
     
 ```
 ***
